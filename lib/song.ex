@@ -19,8 +19,6 @@ defmodule SONG do
   defp verse(2) do
     swallowed_animals = [h|t] = ['spider', 'fly']
     begin_verse(h) <>
-      middle_verse() <>
-      swallow("spider","fly") <>
       end_verse(:not_first)
   end
   defp verse(3) do
@@ -28,8 +26,6 @@ defmodule SONG do
     begin_verse(h) <>
       exclamation(h) <>
       swallow("bird", "spider") <>
-      middle_verse() <>
-      swallow("spider", "fly") <>
       end_verse(:not_first)
   end
   defp verse(4) do
@@ -38,8 +34,6 @@ defmodule SONG do
       exclamation(h) <>
       swallow("cat", "bird") <>
       swallow("bird", "spider") <>
-      middle_verse() <>
-      swallow("spider", "fly") <>
       end_verse(:not_first)
   end
   defp verse(5) do
@@ -49,8 +43,6 @@ defmodule SONG do
       swallow("dog", "cat") <>
       swallow("cat", "bird") <>
       swallow("bird", "spider") <>
-      middle_verse() <>
-      swallow("spider", "fly") <>
       end_verse(:not_first)
   end
   defp verse(6) do
@@ -61,8 +53,6 @@ defmodule SONG do
       swallow("dog", "cat") <>
       swallow("cat", "bird") <>
       swallow("bird", "spider") <>
-      middle_verse() <>
-      swallow("spider", "fly") <>
       end_verse(:not_first)
   end
   defp verse(7) do
@@ -74,8 +64,6 @@ defmodule SONG do
       swallow("dog", "cat") <>
       swallow("cat", "bird") <>
       swallow("bird", "spider") <>
-      middle_verse() <>
-      swallow("spider", "fly") <>
       end_verse(:not_first)
   end
   defp verse(8) do
@@ -101,8 +89,10 @@ defmodule SONG do
     "Perhaps she'll die.\n\n"
   end
   defp end_verse(_) do
-    "I don't know why she swallowed the fly,\n" <>
-    "Perhaps she'll die.\n\n"
+    middle_verse() <>
+      swallow("spider","fly") <>
+      "I don't know why she swallowed the fly,\n" <>
+      "Perhaps she'll die.\n\n"
   end
 
   defp exclamation('bird') do
