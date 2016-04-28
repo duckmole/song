@@ -33,16 +33,19 @@ defmodule SONG do
   end
 
   defp verse(1) do
+    swallowed_animals = ['fly']
     begin_verse('fly') <>
     end_verse(:first)
   end
   defp verse(2) do
+    swallowed_animals = [h|t] = ['spider', 'fly']
     begin_verse('spider') <>
       middle_verse() <>
       swallow("spider","fly") <>
       end_verse(:not_first)
   end
   defp verse(3) do
+    swallowed_animals = [h|t] = ['bird', 'spider', 'fly']
     begin_verse('bird') <>
       "How absurd! to swallow a bird,\n" <>
       swallow("bird", "spider") <>
@@ -51,6 +54,7 @@ defmodule SONG do
       end_verse(:not_first)
   end
   defp verse(4) do
+    swallowed_animals = [h|t] = ['cat', 'bird', 'spider', 'fly']
     begin_verse('cat') <>
       "Imagine that! to swallow a cat,\n" <>
       swallow("cat", "bird") <>
@@ -60,6 +64,7 @@ defmodule SONG do
       end_verse(:not_first)
   end
   defp verse(5) do
+    swallowed_animals = [h|t] = ['dog', 'cat', 'bird', 'spider', 'fly']
     begin_verse('dog') <>
       "What a hog! to swallow a dog,\n" <>
       swallow("dog", "cat") <>
@@ -70,6 +75,7 @@ defmodule SONG do
       end_verse(:not_first)
   end
   defp verse(6) do
+    swallowed_animals = [h|t] = ['goat', 'dog', 'cat', 'bird', 'spider', 'fly']
     begin_verse('goat') <>
       "Just opened her throat! to swallow a goat,\n" <>
       swallow("goat", "dog") <>
@@ -81,6 +87,7 @@ defmodule SONG do
       end_verse(:not_first)
   end
   defp verse(7) do
+    swallowed_animals = [h|t] = ['cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
     begin_verse('cow') <>
       "I don't know how she swallowed a cow!\n" <>
       swallow("cow", "goat") <>
@@ -93,6 +100,7 @@ defmodule SONG do
       end_verse(:not_first)
   end
   defp verse(8) do
+    swallowed_animals = [h|t] = ['horse', 'cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
     "There was an old woman who swallowed a horse,\n" <>
       "She's dead—of course!\n"
   end
