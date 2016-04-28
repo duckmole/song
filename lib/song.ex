@@ -1,63 +1,59 @@
 defmodule SONG do
 
   def lyrics() do
-    lyrics( Enum.to_list(1..8), [])
+    animals = ['horse', 'cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
+    [first | other] = Enum.reverse(animals)
+    lyrics( [first], other, [])
   end
 
-  defp lyrics([], acc) do
-    List.foldl(acc, "", &(&1 <> &2))
+  defp lyrics(all_animals, [], acc) do
+    final_acc = [verse(length(all_animals), all_animals) | acc]
+    List.foldl(final_acc, "", &(&1 <> &2))
   end
-  defp lyrics([head|tail], acc) do
-    lyrics(tail, [verse(head) | acc] )
+  defp lyrics(current_swallowed, [next_swallowed | t], acc) do
+    next = [next_swallowed | current_swallowed]
+    lyrics(next, t, [verse(length(current_swallowed), current_swallowed) | acc] )
   end
 
-  defp verse(1) do
-    swallowed_animals = ['fly']
-    begin_verse('fly') <>
+  defp verse(1, swallowed_animals=[h]) do
+    begin_verse(h) <>
     end_verse(swallowed_animals)
   end
-  defp verse(2) do
-    swallowed_animals = [h|t] = ['spider', 'fly']
+  defp verse(2, swallowed_animals=[h|t]) do
     begin_verse(h) <>
       end_verse(swallowed_animals)
   end
-  defp verse(3) do
-    swallowed_animals = [h|t] = ['bird', 'spider', 'fly']
+  defp verse(3, swallowed_animals=[h|t]) do
     begin_verse(h) <>
       exclamation(h) <>
       swallowed_animals(swallowed_animals) <>
       end_verse(swallowed_animals)
   end
-  defp verse(4) do
-    swallowed_animals = [h|t] = ['cat', 'bird', 'spider', 'fly']
+  defp verse(4, swallowed_animals=[h|t]) do
     begin_verse(h) <>
       exclamation(h) <>
       swallowed_animals(swallowed_animals) <>
       end_verse(swallowed_animals)
   end
-  defp verse(5) do
-    swallowed_animals = [h|t] = ['dog', 'cat', 'bird', 'spider', 'fly']
+  defp verse(5,swallowed_animals=[h|t]) do
     begin_verse(h) <>
       exclamation(h) <>
       swallowed_animals(swallowed_animals) <>
       end_verse(swallowed_animals)
   end
-  defp verse(6) do
-    swallowed_animals = [h|t] = ['goat', 'dog', 'cat', 'bird', 'spider', 'fly']
+  defp verse(6, swallowed_animals=[h|t]) do
     begin_verse(h) <>
       exclamation(h) <>
       swallowed_animals(swallowed_animals) <>
       end_verse(swallowed_animals)
   end
-  defp verse(7) do
-    swallowed_animals = [h|t] = ['cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
+  defp verse(7, swallowed_animals=[h|t]) do
     begin_verse(h) <>
       exclamation(h) <>
       swallowed_animals(swallowed_animals) <>
       end_verse(swallowed_animals)
   end
-  defp verse(8) do
-    swallowed_animals = [h|t] = ['horse', 'cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
+  defp verse(8, swallowed_animals= [h|t]) do
     "There was an old woman who swallowed a horse,\n" <>
       "She's dead—of course!\n"
   end
