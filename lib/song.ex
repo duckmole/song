@@ -11,72 +11,86 @@ defmodule SONG do
     lyrics(tail, [verse(head) | acc] )
   end
 
+  defp swallow(predator, target) do
+    "She swallowed the #{predator} to catch the #{target},\n"
+  end
+
+  defp begin_verse(animal) do
+    "There was an old woman who swallowed a #{animal},\n"
+  end
+
+  defp middle_verse() do
+    "That wriggled and jiggled and tickled inside her,\n"
+  end
+
+  defp end_verse(:first) do
+    "I don't know why she swallowed a fly,\n" <>
+    "Perhaps she'll die.\n\n"
+  end
+  defp end_verse(_) do
+    "I don't know why she swallowed the fly,\n" <>
+    "Perhaps she'll die.\n\n"
+  end
+
   defp verse(1) do
-    "There was an old woman who swallowed a fly,\n" <>
-      "I don't know why she swallowed a fly,\n" <>
-      "Perhaps she'll die.\n\n"
+    begin_verse('fly') <>
+    end_verse(:first)
   end
   defp verse(2) do
-    "There was an old woman who swallowed a spider,\n" <>
-      "That wriggled and jiggled and tickled inside her,\n" <>
-      "She swallowed the spider to catch the fly,\n" <>
-      "I don't know why she swallowed the fly,\n" <>
-      "Perhaps she'll die.\n\n"
+    begin_verse('spider') <>
+      middle_verse() <>
+      swallow("spider","fly") <>
+      end_verse(:not_first)
   end
   defp verse(3) do
-    "There was an old woman who swallowed a bird,\n" <>
+    begin_verse('bird') <>
       "How absurd! to swallow a bird,\n" <>
-      "She swallowed the bird to catch the spider,\n" <>
-      "That wriggled and jiggled and tickled inside her,\n" <>
-      "She swallowed the spider to catch the fly,\n" <>
-      "I don't know why she swallowed the fly,\n" <>
-      "Perhaps she'll die.\n\n"
+      swallow("bird", "spider") <>
+      middle_verse() <>
+      swallow("spider", "fly") <>
+      end_verse(:not_first)
   end
   defp verse(4) do
-    "There was an old woman who swallowed a cat,\n" <>
+    begin_verse('cat') <>
       "Imagine that! to swallow a cat,\n" <>
-      "She swallowed the cat to catch the bird,\n" <>
-      "She swallowed the bird to catch the spider,\n" <>
-      "That wriggled and jiggled and tickled inside her,\n" <>
-      "She swallowed the spider to catch the fly,\n" <>
-      "I don't know why she swallowed the fly,\n" <>
-      "Perhaps she'll die.\n\n"
+      swallow("cat", "bird") <>
+      swallow("bird", "spider") <>
+      middle_verse() <>
+      swallow("spider", "fly") <>
+      end_verse(:not_first)
   end
   defp verse(5) do
-    "There was an old woman who swallowed a dog,\n" <>
+    begin_verse('dog') <>
       "What a hog! to swallow a dog,\n" <>
-      "She swallowed the dog to catch the cat,\n" <>
-      "She swallowed the cat to catch the bird,\n" <>
-      "She swallowed the bird to catch the spider,\n" <>
-      "That wriggled and jiggled and tickled inside her,\n" <>
-      "She swallowed the spider to catch the fly,\n" <>
-      "I don't know why she swallowed the fly,\n" <>
-      "Perhaps she'll die.\n\n"
+      swallow("dog", "cat") <>
+      swallow("cat", "bird") <>
+      swallow("bird", "spider") <>
+      middle_verse() <>
+      swallow("spider", "fly") <>
+      end_verse(:not_first)
   end
   defp verse(6) do
-    "There was an old woman who swallowed a goat,\n" <>
+    begin_verse('goat') <>
       "Just opened her throat! to swallow a goat,\n" <>
-      "She swallowed the goat to catch the dog,\n" <>
-      "She swallowed the dog to catch the cat,\n" <>
-      "She swallowed the cat to catch the bird,\n" <>
-      "She swallowed the bird to catch the spider,\n" <>
-      "That wriggled and jiggled and tickled inside her,\n" <>
-      "She swallowed the spider to catch the fly,\n" <>
-      "I don't know why she swallowed the fly,\n" <>
-      "Perhaps she'll die.\n\n"
+      swallow("goat", "dog") <>
+      swallow("dog", "cat") <>
+      swallow("cat", "bird") <>
+      swallow("bird", "spider") <>
+      middle_verse() <>
+      swallow("spider", "fly") <>
+      end_verse(:not_first)
   end
   defp verse(7) do
-    "There was an old woman who swallowed a cow,\n" <>
+    begin_verse('cow') <>
       "I don't know how she swallowed a cow!\n" <>
-      "She swallowed the cow to catch the goat,\n" <>
-      "She swallowed the goat to catch the dog,\n" <>
-      "She swallowed the dog to catch the cat,\n" <>
-      "She swallowed the cat to catch the bird,\n" <>
-      "She swallowed the bird to catch the spider,\n" <>
-      "That wriggled and jiggled and tickled inside her,\n" <>
-      "She swallowed the spider to catch the fly,\n" <>
-      "I don't know why she swallowed the fly,\n" <>
-      "Perhaps she'll die.\n\n"
+      swallow("cow", "goat") <>
+      swallow("goat", "dog") <>
+      swallow("dog", "cat") <>
+      swallow("cat", "bird") <>
+      swallow("bird", "spider") <>
+      middle_verse() <>
+      swallow("spider", "fly") <>
+      end_verse(:not_first)
   end
   defp verse(8) do
     "There was an old woman who swallowed a horse,\n" <>
