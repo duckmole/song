@@ -11,6 +11,79 @@ defmodule SONG do
     lyrics(tail, [verse(head) | acc] )
   end
 
+  defp verse(1) do
+    swallowed_animals = ['fly']
+    begin_verse('fly') <>
+    end_verse(:first)
+  end
+  defp verse(2) do
+    swallowed_animals = [h|t] = ['spider', 'fly']
+    begin_verse(h) <>
+      middle_verse() <>
+      swallow("spider","fly") <>
+      end_verse(:not_first)
+  end
+  defp verse(3) do
+    swallowed_animals = [h|t] = ['bird', 'spider', 'fly']
+    begin_verse(h) <>
+      exclamation(h) <>
+      swallow("bird", "spider") <>
+      middle_verse() <>
+      swallow("spider", "fly") <>
+      end_verse(:not_first)
+  end
+  defp verse(4) do
+    swallowed_animals = [h|t] = ['cat', 'bird', 'spider', 'fly']
+    begin_verse(h) <>
+      exclamation(h) <>
+      swallow("cat", "bird") <>
+      swallow("bird", "spider") <>
+      middle_verse() <>
+      swallow("spider", "fly") <>
+      end_verse(:not_first)
+  end
+  defp verse(5) do
+    swallowed_animals = [h|t] = ['dog', 'cat', 'bird', 'spider', 'fly']
+    begin_verse(h) <>
+      exclamation(h) <>
+      swallow("dog", "cat") <>
+      swallow("cat", "bird") <>
+      swallow("bird", "spider") <>
+      middle_verse() <>
+      swallow("spider", "fly") <>
+      end_verse(:not_first)
+  end
+  defp verse(6) do
+    swallowed_animals = [h|t] = ['goat', 'dog', 'cat', 'bird', 'spider', 'fly']
+    begin_verse(h) <>
+      exclamation(h) <>
+      swallow("goat", "dog") <>
+      swallow("dog", "cat") <>
+      swallow("cat", "bird") <>
+      swallow("bird", "spider") <>
+      middle_verse() <>
+      swallow("spider", "fly") <>
+      end_verse(:not_first)
+  end
+  defp verse(7) do
+    swallowed_animals = [h|t] = ['cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
+    begin_verse(h) <>
+      exclamation(h) <>
+      swallow("cow", "goat") <>
+      swallow("goat", "dog") <>
+      swallow("dog", "cat") <>
+      swallow("cat", "bird") <>
+      swallow("bird", "spider") <>
+      middle_verse() <>
+      swallow("spider", "fly") <>
+      end_verse(:not_first)
+  end
+  defp verse(8) do
+    swallowed_animals = [h|t] = ['horse', 'cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
+    "There was an old woman who swallowed a horse,\n" <>
+      "She's dead—of course!\n"
+  end
+
   defp swallow(predator, target) do
     "She swallowed the #{predator} to catch the #{target},\n"
   end
@@ -32,76 +105,19 @@ defmodule SONG do
     "Perhaps she'll die.\n\n"
   end
 
-  defp verse(1) do
-    swallowed_animals = ['fly']
-    begin_verse('fly') <>
-    end_verse(:first)
+  defp exclamation('bird') do
+    "How absurd! to swallow a bird,\n"
   end
-  defp verse(2) do
-    swallowed_animals = [h|t] = ['spider', 'fly']
-    begin_verse('spider') <>
-      middle_verse() <>
-      swallow("spider","fly") <>
-      end_verse(:not_first)
+  defp exclamation('cat') do
+    "Imagine that! to swallow a cat,\n"
   end
-  defp verse(3) do
-    swallowed_animals = [h|t] = ['bird', 'spider', 'fly']
-    begin_verse('bird') <>
-      "How absurd! to swallow a bird,\n" <>
-      swallow("bird", "spider") <>
-      middle_verse() <>
-      swallow("spider", "fly") <>
-      end_verse(:not_first)
+  defp exclamation('dog') do
+    "What a hog! to swallow a dog,\n"
   end
-  defp verse(4) do
-    swallowed_animals = [h|t] = ['cat', 'bird', 'spider', 'fly']
-    begin_verse('cat') <>
-      "Imagine that! to swallow a cat,\n" <>
-      swallow("cat", "bird") <>
-      swallow("bird", "spider") <>
-      middle_verse() <>
-      swallow("spider", "fly") <>
-      end_verse(:not_first)
+  defp exclamation('goat') do
+    "Just opened her throat! to swallow a goat,\n"
   end
-  defp verse(5) do
-    swallowed_animals = [h|t] = ['dog', 'cat', 'bird', 'spider', 'fly']
-    begin_verse('dog') <>
-      "What a hog! to swallow a dog,\n" <>
-      swallow("dog", "cat") <>
-      swallow("cat", "bird") <>
-      swallow("bird", "spider") <>
-      middle_verse() <>
-      swallow("spider", "fly") <>
-      end_verse(:not_first)
-  end
-  defp verse(6) do
-    swallowed_animals = [h|t] = ['goat', 'dog', 'cat', 'bird', 'spider', 'fly']
-    begin_verse('goat') <>
-      "Just opened her throat! to swallow a goat,\n" <>
-      swallow("goat", "dog") <>
-      swallow("dog", "cat") <>
-      swallow("cat", "bird") <>
-      swallow("bird", "spider") <>
-      middle_verse() <>
-      swallow("spider", "fly") <>
-      end_verse(:not_first)
-  end
-  defp verse(7) do
-    swallowed_animals = [h|t] = ['cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
-    begin_verse('cow') <>
-      "I don't know how she swallowed a cow!\n" <>
-      swallow("cow", "goat") <>
-      swallow("goat", "dog") <>
-      swallow("dog", "cat") <>
-      swallow("cat", "bird") <>
-      swallow("bird", "spider") <>
-      middle_verse() <>
-      swallow("spider", "fly") <>
-      end_verse(:not_first)
-  end
-  defp verse(8) do
-    swallowed_animals = [h|t] = ['horse', 'cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
-    "There was an old woman who swallowed a horse,\n" <>
-      "She's dead—of course!\n"
+  defp exclamation('cow') do
+    "I don't know how she swallowed a cow!\n"
   end
 end
