@@ -1,9 +1,8 @@
 defmodule SONG do
 
   def lyrics() do
-    animals = ['horse', 'cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
-    [first | other] = Enum.reverse(animals)
-    lyrics( [first], other, [])
+    [first_swallowed | next] = ['fly', 'spider', 'bird', 'cat', 'dog', 'goat', 'cow', 'horse']
+    lyrics( [first_swallowed], next, [])
   end
 
   defp lyrics(all_animals, [], acc) do
@@ -26,8 +25,29 @@ defmodule SONG do
       end_verse(swallowed_animals, step)
   end
 
-  defp swallow(predator, target) do
-    "She swallowed the #{predator} to catch the #{target},\n"
+  defp begin_verse(animal) do
+    "There was an old woman who swallowed a #{animal},\n"
+  end
+
+  defp exclamation('cow') do
+    "I don't know how she swallowed a cow!\n"
+  end
+  defp exclamation(animal) do
+    start_exclamation(animal) <>
+      " to swallow a #{animal},\n"
+  end
+
+  defp start_exclamation('bird') do
+    "How absurd!"
+  end
+  defp start_exclamation('cat') do
+    "Imagine that!"
+  end
+  defp start_exclamation('dog') do
+    "What a hog!"
+  end
+  defp start_exclamation('goat') do
+    "Just opened her throat!"
   end
 
   defp swallowed_animals(animals) do
@@ -41,8 +61,8 @@ defmodule SONG do
     swallowed_animals(t, [swallow(first, second) | acc])
   end
 
-  defp begin_verse(animal) do
-    "There was an old woman who swallowed a #{animal},\n"
+  defp swallow(predator, target) do
+    "She swallowed the #{predator} to catch the #{target},\n"
   end
 
   defp middle_verse() do
@@ -65,26 +85,5 @@ defmodule SONG do
   defp why_swallowed(article, animal) do
     "I don't know why she swallowed #{article} #{animal},\n" <>
     "Perhaps she'll die.\n\n"
-  end
-
-  defp exclamation('cow') do
-    "I don't know how she swallowed a cow!\n"
-  end
-  defp exclamation(animal) do
-    start_exclamation(animal) <>
-      " to swallow a #{animal},\n"
-  end
-
-  defp start_exclamation('bird') do
-    "How absurd!"
-  end
-  defp start_exclamation('cat') do
-    "Imagine that!"
-  end
-  defp start_exclamation('dog') do
-    "What a hog!"
-  end
-  defp start_exclamation('goat') do
-    "Just opened her throat!"
   end
 end
