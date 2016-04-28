@@ -15,11 +15,7 @@ defmodule SONG do
     lyrics(next, t, [verse(current_swallowed, :not_last) | acc] )
   end
 
-  defp verse(swallowed_animals=[h|_], :last) do
-    begin_verse(h) <>
-    end_verse(swallowed_animals, :last)
-  end
-  defp verse(swallowed_animals=[h|_], step) when length(swallowed_animals) < 3 do
+  defp verse(swallowed_animals=[h|_], step) when length(swallowed_animals) < 3 or step == :last do
     begin_verse(h) <>
     end_verse(swallowed_animals, step)
   end
@@ -71,19 +67,24 @@ defmodule SONG do
     "Perhaps she'll die.\n\n"
   end
 
-  defp exclamation('bird') do
-    "How absurd! to swallow a bird,\n"
-  end
-  defp exclamation('cat') do
-    "Imagine that! to swallow a cat,\n"
-  end
-  defp exclamation('dog') do
-    "What a hog! to swallow a dog,\n"
-  end
-  defp exclamation('goat') do
-    "Just opened her throat! to swallow a goat,\n"
-  end
   defp exclamation('cow') do
     "I don't know how she swallowed a cow!\n"
+  end
+  defp exclamation(animal) do
+    start_exclamation(animal) <>
+      " to swallow a #{animal},\n"
+  end
+
+  defp start_exclamation('bird') do
+    "How absurd!"
+  end
+  defp start_exclamation('cat') do
+    "Imagine that!"
+  end
+  defp start_exclamation('dog') do
+    "What a hog!"
+  end
+  defp start_exclamation('goat') do
+    "Just opened her throat!"
   end
 end

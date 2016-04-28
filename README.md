@@ -2,17 +2,6 @@
 
  My first refactoring session in Elixir
 
-## Environment
+## Purpose
 
-For this session I use :
-
- * erlang v 18.
- * elixir v
- * alchemist : A useful tutorial [Spacemacs and Alchemist to make Elixir of immortality](http://www.zohaib.me/spacemacs-and-alchemist-to-make-elixir-of-immortality/)
- 
-Set variable
-
- * alchemist-hooks-test-on-save true
- * alchemist-hook-compile-on-save true
-
-## The dojo
+Redo the the refactoring for the song : 'There was an old woman who swallowed a fly' in Elixir
