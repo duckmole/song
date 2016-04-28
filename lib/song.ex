@@ -25,45 +25,35 @@ defmodule SONG do
     swallowed_animals = [h|t] = ['bird', 'spider', 'fly']
     begin_verse(h) <>
       exclamation(h) <>
-      swallow("bird", "spider") <>
+      swallowed_animals(swallowed_animals) <>
       end_verse(swallowed_animals)
   end
   defp verse(4) do
     swallowed_animals = [h|t] = ['cat', 'bird', 'spider', 'fly']
     begin_verse(h) <>
       exclamation(h) <>
-      swallow("cat", "bird") <>
-      swallow("bird", "spider") <>
+      swallowed_animals(swallowed_animals) <>
       end_verse(swallowed_animals)
   end
   defp verse(5) do
     swallowed_animals = [h|t] = ['dog', 'cat', 'bird', 'spider', 'fly']
     begin_verse(h) <>
       exclamation(h) <>
-      swallow("dog", "cat") <>
-      swallow("cat", "bird") <>
-      swallow("bird", "spider") <>
+      swallowed_animals(swallowed_animals) <>
       end_verse(swallowed_animals)
   end
   defp verse(6) do
     swallowed_animals = [h|t] = ['goat', 'dog', 'cat', 'bird', 'spider', 'fly']
     begin_verse(h) <>
       exclamation(h) <>
-      swallow("goat", "dog") <>
-      swallow("dog", "cat") <>
-      swallow("cat", "bird") <>
-      swallow("bird", "spider") <>
+      swallowed_animals(swallowed_animals) <>
       end_verse(swallowed_animals)
   end
   defp verse(7) do
     swallowed_animals = [h|t] = ['cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
     begin_verse(h) <>
       exclamation(h) <>
-      swallow("cow", "goat") <>
-      swallow("goat", "dog") <>
-      swallow("dog", "cat") <>
-      swallow("cat", "bird") <>
-      swallow("bird", "spider") <>
+      swallowed_animals(swallowed_animals) <>
       end_verse(swallowed_animals)
   end
   defp verse(8) do
@@ -74,6 +64,17 @@ defmodule SONG do
 
   defp swallow(predator, target) do
     "She swallowed the #{predator} to catch the #{target},\n"
+  end
+
+  defp swallowed_animals(animals) do
+    swallowed_animals(animals, [])
+  end
+
+  defp swallowed_animals([first, second], acc) do
+    List.foldl(acc, "", &(&1 <> &2))
+  end
+  defp swallowed_animals([first | t]=[first, second | _], acc) do
+    swallowed_animals(t, [swallow(first, second) | acc])
   end
 
   defp begin_verse(animal) do
