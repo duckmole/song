@@ -14,19 +14,19 @@ defmodule SONG do
   defp verse(1) do
     swallowed_animals = ['fly']
     begin_verse('fly') <>
-    end_verse(:first)
+    end_verse(swallowed_animals)
   end
   defp verse(2) do
     swallowed_animals = [h|t] = ['spider', 'fly']
     begin_verse(h) <>
-      end_verse(:not_first)
+      end_verse(swallowed_animals)
   end
   defp verse(3) do
     swallowed_animals = [h|t] = ['bird', 'spider', 'fly']
     begin_verse(h) <>
       exclamation(h) <>
       swallow("bird", "spider") <>
-      end_verse(:not_first)
+      end_verse(swallowed_animals)
   end
   defp verse(4) do
     swallowed_animals = [h|t] = ['cat', 'bird', 'spider', 'fly']
@@ -34,7 +34,7 @@ defmodule SONG do
       exclamation(h) <>
       swallow("cat", "bird") <>
       swallow("bird", "spider") <>
-      end_verse(:not_first)
+      end_verse(swallowed_animals)
   end
   defp verse(5) do
     swallowed_animals = [h|t] = ['dog', 'cat', 'bird', 'spider', 'fly']
@@ -43,7 +43,7 @@ defmodule SONG do
       swallow("dog", "cat") <>
       swallow("cat", "bird") <>
       swallow("bird", "spider") <>
-      end_verse(:not_first)
+      end_verse(swallowed_animals)
   end
   defp verse(6) do
     swallowed_animals = [h|t] = ['goat', 'dog', 'cat', 'bird', 'spider', 'fly']
@@ -53,7 +53,7 @@ defmodule SONG do
       swallow("dog", "cat") <>
       swallow("cat", "bird") <>
       swallow("bird", "spider") <>
-      end_verse(:not_first)
+      end_verse(swallowed_animals)
   end
   defp verse(7) do
     swallowed_animals = [h|t] = ['cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
@@ -64,7 +64,7 @@ defmodule SONG do
       swallow("dog", "cat") <>
       swallow("cat", "bird") <>
       swallow("bird", "spider") <>
-      end_verse(:not_first)
+      end_verse(swallowed_animals)
   end
   defp verse(8) do
     swallowed_animals = [h|t] = ['horse', 'cow', 'goat', 'dog', 'cat', 'bird', 'spider', 'fly']
@@ -84,14 +84,15 @@ defmodule SONG do
     "That wriggled and jiggled and tickled inside her,\n"
   end
 
-  defp end_verse(:first) do
-    "I don't know why she swallowed a fly,\n" <>
+  defp end_verse([first]) do
+    "I don't know why she swallowed a #{first},\n" <>
     "Perhaps she'll die.\n\n"
   end
-  defp end_verse(_) do
+  defp end_verse(animals) do
+    [first, second | _] = Enum.reverse(animals)
     middle_verse() <>
-      swallow("spider","fly") <>
-      "I don't know why she swallowed the fly,\n" <>
+      swallow(second, first) <>
+      "I don't know why she swallowed the #{first},\n" <>
       "Perhaps she'll die.\n\n"
   end
 
