@@ -19,13 +19,9 @@ defmodule SONG do
     begin_verse(h) <>
     end_verse(swallowed_animals, :last)
   end
-  defp verse(swallowed_animals=[h], step) do
+  defp verse(swallowed_animals=[h|_], step) when length(swallowed_animals) < 3 do
     begin_verse(h) <>
     end_verse(swallowed_animals, step)
-  end
-  defp verse(swallowed_animals=[h,_], step) do
-    begin_verse(h) <>
-      end_verse(swallowed_animals, step)
   end
   defp verse(swallowed_animals=[h|_], step) do
     begin_verse(h) <>
@@ -42,7 +38,7 @@ defmodule SONG do
     swallowed_animals(animals, [])
   end
 
-  defp swallowed_animals([first, second], acc) do
+  defp swallowed_animals([_, _], acc) do
     List.foldl(acc, "", &(&1 <> &2))
   end
   defp swallowed_animals([first | t]=[first, second | _], acc) do
@@ -61,15 +57,18 @@ defmodule SONG do
     "She's dead—of course!\n"
   end
   defp end_verse([first], _) do
-    "I don't know why she swallowed a #{first},\n" <>
-    "Perhaps she'll die.\n\n"
+    why_swallowed('a', first)
   end
   defp end_verse(animals, _) do
     [first, second | _] = Enum.reverse(animals)
     middle_verse() <>
       swallow(second, first) <>
-      "I don't know why she swallowed the #{first},\n" <>
-      "Perhaps she'll die.\n\n"
+      why_swallowed('the', first)
+  end
+
+  defp why_swallowed(article, animal) do
+    "I don't know why she swallowed #{article} #{animal},\n" <>
+    "Perhaps she'll die.\n\n"
   end
 
   defp exclamation('bird') do
